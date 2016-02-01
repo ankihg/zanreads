@@ -1,0 +1,121 @@
+body {
+  background-color: #040857;
+  overflow: hidden;
+}
+
+#canvasWrap {
+  width: 100%;
+  height: 100%;
+  border:8px solid #000000;
+}
+
+#earthDiv {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  z-index: 0;
+}
+
+#menuTreeDiv {
+  position: absolute;
+  top: 0%;
+  width: 25%;
+  height:100%;
+  z-index: 1;
+}
+
+.link {
+  position: absolute;
+  width: 83px;
+  height: 83px;
+  text-align: center;
+  color: yellow;
+  z-index: 2;
+}
+
+#books-link {
+		top: 21.5%;
+		left: 9.8%;
+		background-color: transparent;
+}
+
+/* TOMBSTONE */
+.tombstone {
+  position: absolute;
+}
+.tombstone img {
+  position: absoulte;
+  width: 100%;
+  height: 100%;
+}
+.tombstone-engraving {
+  position: absolute;
+  left: 22%;
+  top: 27%;
+  width: 50%;
+
+  color:white;
+  text-align:center;
+}
+
+/* GHOST */
+.ghost {
+  position: absolute;
+}
+.ghost img {
+  position: absolute;
+}
+.ghost div {
+  position: absolute;
+}
+.ghost-img {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.cover-img {
+  left: 37%;
+  top: 8%;
+  width: 18%;
+  height: 25%;
+}
+
+.title {
+  left: 59%;
+  top: 15%;
+  width: 10%;
+  height: 20%;
+  text-align:center;
+  font-weight: bold;
+}
+
+.body {
+  left: 23%;
+  top: 32%;
+  width: 58%;
+  height: 60%;
+  overflow-y: scroll;
+}
+
+#ghostTemplate {
+  position: absolute;
+}
+
+/* TREE */
+#forestDiv {
+  position: absolute;
+  left: 10%;
+  top: 45%;
+  width: 90%;
+  height: 15%;
+}
+
+.tree {
+  position: absolute;
+}
+
+.tree img {
+  width: 100%;
+  height: 100%;
+}

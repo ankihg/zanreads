@@ -1,0 +1,41 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="styles/base.css">
+
+  <script id='ghost-template' type='text/x-handlebars-template'>
+    <img class="cover-img" src="{{imgSrc}}">
+    <div class="title">{{title}}</div>
+    <div class="body">{{{body}}}</div>
+  </script>
+
+</head>
+<body>
+
+<div id="canvasWrap">
+
+<img id="earthDiv" src="http://zanreads.info/earth.png">
+
+<img id="menuTreeDiv" src="http://zanreads.info/spook_tree3.png">
+
+<div class="link" id="books-link">good</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reads</div>
+
+</div>
+
+
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+<script src="/scripts/menuTree.js"></script>
+<script src="/scripts/tree.js"></script>
+<script src="/scripts/ghost.js"></script>
+<script src="/scripts/tombstone.js"></script>
+<script src="/scripts/post.js"></script>
+<script src="/scripts/index.js"></script>
+<script>
+Post.fetchAll(init);
+
+</script>
+
+</body>
+</html>

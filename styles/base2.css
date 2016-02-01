@@ -1,0 +1,75 @@
+body {
+ overflow: hidden;
+}
+
+#canvasWrap {
+  position:relative;
+  width: 100%;
+} /* Make this a positioned parent */
+
+#canvas {
+  position:absolute;
+  top: 0%;
+  left: 0%;
+  width: 1000px;
+}
+
+#postScroll{
+ position:absolute;
+ overflow-y: scroll;
+}
+
+.box-link {
+		position: absolute;
+		top: 20%;
+		left: 8.5%;
+		width: 83px;
+		height: 83px;
+		background-color: transparent;
+		#border: 1px dashed yellow;
+		text-align: center;
+		color: yellow;
+}
+
+.box-link2 {
+		position: absolute;
+		top: 55%;
+		left: 12%;
+		width: 83px;
+		height: 83px;
+		background-color: transparent;
+		#border: 1px dashed yellow;
+		text-align: center;
+		color: yellow;
+}
+
+.box-link3 {
+		position: absolute;
+		top: 6.3%;
+		left: 9%;
+		width: 83px;
+		height: 83px;
+		background-color: transparent;
+		#border: 1px dashed yellow;
+		text-align: center;
+		color: yellow;
+}
+
+.box-link4 {
+		position: absolute;
+		top: 51%;
+		left: 5%;
+		width: 83px;
+		height: 83px;
+		background-color: transparent;
+		#border: 1px dashed yellow;
+		text-align: center;
+		color: yellow;
+}
+
+
+#moonCanvas {
+ position: absolute;
+ top: 0%;
+ left: 80%;
+}
