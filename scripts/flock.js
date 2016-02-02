@@ -13,6 +13,11 @@ Flock.prototype.create = function() {
   this.$flockDiv.addClass('flock');
   this.$flockDiv.css('left', parseInt(this.$linkDiv.css('left'))-parseInt($('#canvasWrap').css('width'))/40).css('top', parseInt(this.$linkDiv.css('top'))-parseInt($('#canvasWrap').css('height'))/8).css('width', parseInt($('#canvasWrap').css('width'))/6).css('height', parseInt($('#canvasWrap').css('height'))/3);
   this.$flockDiv.css('z-index', '3');
+  var flock = this;
+  this.$flockDiv.on('click', function(e) {
+    e.preventDefault();
+    flock.$linkDiv.trigger('click');
+  });
 
   this.$img = $('<img>');
   this.$img.attr('src', '/media/flock.gif');
@@ -20,7 +25,6 @@ Flock.prototype.create = function() {
 }
 
 Flock.prototype.draw = function() {
-  console.log('flock div has been appended')
   $('#canvasWrap').append(this.$flockDiv);
 
 
@@ -32,13 +36,12 @@ Flock.prototype.draw = function() {
       // reset a gif:
       flock.$img.attr('src', flock.$img.attr('src').replace(/\?.*$/,"")+"?x="+Math.random());
     }
-    console.log('flockDiv has been removed')
   }, 1000);
 };
 
 Flock.setListeners = function() {
-  $('.menu-link').on('mouseover', function() {
-    console.log('books-link mouseover');
+  $('.menu-link').on('mousemove', function() {
+    console.log('books-link mousemove');
     Flock.all.push(new Flock($(this)));
   });
 };
