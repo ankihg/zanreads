@@ -26,6 +26,10 @@
       Moon.$img.attr('src', '/media/moon/tad.png');
       Moon.$moonDiv.append(Moon.$img);
     });
+    Moon.$moonDiv.on('click', function() {
+      Moon.$img.attr('src', '/media/moon/tad.png');
+      Moon.$moonDiv.append(Moon.$img);
+    });
   };
 
 
