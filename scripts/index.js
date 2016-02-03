@@ -1,7 +1,7 @@
 
 function init() {
   console.log('init');
-  menuTree.makeClickEvents();
+  menuTree.makeElements();
   Tree.generate();
   Flock.setListeners();
   Fog.init();

@@ -26,12 +26,8 @@
   text-align: center;
   color: yellow;
   z-index: 6;
-}
+  background-color: transparent;
 
-#books-link {
-		top: 21.5%;
-		left: 9.8%;
-		background-color: transparent;
 }
 
 /* TOMBSTONE */
