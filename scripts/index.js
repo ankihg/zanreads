@@ -4,6 +4,7 @@ function init() {
   menuTree.makeClickEvents();
   Tree.generate();
   Flock.setListeners();
+  Fog.init();
 };
 
 
