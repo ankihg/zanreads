@@ -12,7 +12,6 @@ Flock.prototype.create = function() {
   this.$flockDiv = $('<div>');
   this.$flockDiv.addClass('flock');
   this.$flockDiv.css('left', parseInt(this.$linkDiv.css('left'))-parseInt($('#canvasWrap').css('width'))/40).css('top', parseInt(this.$linkDiv.css('top'))-parseInt($('#canvasWrap').css('height'))/8).css('width', parseInt($('#canvasWrap').css('width'))/6).css('height', parseInt($('#canvasWrap').css('height'))/3);
-  this.$flockDiv.css('z-index', '3');
   var flock = this;
   this.$flockDiv.on('click', function(e) {
     e.preventDefault();
