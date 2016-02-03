@@ -43,7 +43,7 @@ Ghost.prototype.appearGhost = function() {
 
   this.$ghost.append(this.$img);
 
-  $('#fogDiv').on('click', function() {
+  $('#forestDiv').on('click', function() {
     Ghost.theGhost.hideGhost();
   });
 
@@ -56,7 +56,7 @@ Ghost.prototype.appearGhost = function() {
 Ghost.prototype.hideGhost = function() {
   this.$ghost.hide();
 
-  $('#fogDiv').on('click', function() {
+  $('#forestDiv').on('click', function() {
     //do nothing
   });
   $('#menuTreeDiv').on('click', function() {

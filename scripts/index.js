@@ -5,6 +5,7 @@ function init() {
   Tree.generate();
   Flock.setListeners();
   Fog.init();
+  Moon.init();
 };
 
 

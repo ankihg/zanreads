@@ -19,10 +19,8 @@
   Fog.prototype.draw = function() {
     this.$img = $('<img>');
     this.$img.attr('src', '/media/fog.png');
-    console.log(this.x);
     this.$img.css('left', this.x).css('top', this.y);
     Fog.$fogDiv.append(this.$img);
-    console.log('fog drawn');
   };
 
   Fog.generate = function() {
