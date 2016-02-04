@@ -147,3 +147,16 @@
   width: 100%;
   height: 100%;
 }
+
+/* POST PAGE */
+#textDiv {
+ position:absolute;
+ left:40%;
+ top:0%;
+ width:60%
+ height:100%;
+ background-color:#FFFFFF;
+ margin: 3%;
+ padding:1%;
+ overflow-y: scroll;
+}
