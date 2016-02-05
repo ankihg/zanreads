@@ -88,6 +88,7 @@
   width: 58%;
   height: 60%;
   overflow-y: scroll;
+  color: black;
 }
 
 #ghostTemplate {

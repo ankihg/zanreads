@@ -2,9 +2,10 @@
 
 var Post = function(tmp) {
   this.title = tmp.title;
+  this.id = this.title.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/ /g, '-' ).toLowerCase();
   this.author = tmp.author;
   this.imgSrc = tmp.imgSrc;
-  this.url = tmp.url;
+  this.url = tmp.url; // ?
   this.body = tmp.body;
   console.log(this.title);
 };
