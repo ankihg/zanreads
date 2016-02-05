@@ -3,6 +3,7 @@
   indexController = {};
 
   indexController.index = function(ctx, next) {
+    ui();
     Post.fetchAll(init);
   };
 
@@ -15,8 +16,11 @@
     Moon.init();
   };
 
+  function ui() {
+    $('#post-page-wrap').hide();
 
-
+    $('#canvasWrap').show();
+  };
 
 
 

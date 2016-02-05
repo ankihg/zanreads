@@ -2,6 +2,7 @@
 page.base('');
 
 page('/', indexController.index);
+page('/reviews/:id', postController.index);
 // page('/volunteer', volunteerController.index);
 // page('/parks/:id', parkController.ensureParkAll, parkController.loadParkPage, comment.loadAll);
 // page('/about-us',parkController.about);

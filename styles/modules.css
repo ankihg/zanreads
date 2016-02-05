@@ -149,11 +149,17 @@
 }
 
 /* POST PAGE */
+#post-page-wrap {
+  width: 100%;
+  height:100%;
+  border-style: solid;
+}
+
 #textDiv {
  position:absolute;
  left:40%;
  top:0%;
- width:60%
+ width:50%;
  height:100%;
  background-color:#FFFFFF;
  margin: 3%;
