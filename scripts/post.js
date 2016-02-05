@@ -24,7 +24,6 @@ Post.fetchAll = function(callNext) {
     Post.checkUpdate(); //checks if needs update, calls loadAll() either way
     callNext();
   } else {
-      consoloe.log('request');
       Post.update();
       callNext();
   }
