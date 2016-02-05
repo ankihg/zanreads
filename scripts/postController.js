@@ -5,8 +5,9 @@
 
   postController.index = function(ctx, next) {
     ui();
-    var id = ctx.params.id;
-    console.log(id);
+    var post = Post.getByID(ctx.params.id);
+    console.log(post);
+    post.toPageHTML();
   };
 
   function ui() {

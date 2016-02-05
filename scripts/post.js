@@ -54,5 +54,20 @@ Post.checkUpdate = function() {
   });
 };
 
+Post.prototype.toPageHTML = function() {
+    var template = Handlebars.compile($('#post-page-template').text());
+    var html = template(this);
+    console.log(html);
+    $('#post-page-wrap').empty();
+    $('#post-page-wrap').append(html);
+};
+
+Post.getByID = function(id) {
+  var matches = Post.all.filter(function(p) {
+    return p.id === id;
+  });
+  if (matches.length > 0) { return matches[0]; }
+};
+
 module.Post = Post;
 })(window);
