@@ -22,24 +22,22 @@ Post.fetchAll = function(callNext) {
   console.log('fetch all');
   if (localStorage.reviewData) {
     console.log('load from storage');
-    Post.checkUpdate(); //checks if needs update, calls loadAll() either way
-    callNext();
+    Post.checkUpdate(callNext); //checks if needs update, calls loadAll() either way
   } else {
-      Post.update();
-      callNext();
+      Post.update(callNext);
   }
 };
 
-Post.update = function() {
+Post.update = function(callNext) {
  $.getJSON('/data/reviews.json', function(data, message, xhr) {
     Post.loadAll(data);
     localStorage.reviewData = JSON.stringify(data);
     localStorage.reviewEtag = xhr.getResponseHeader('eTag');
+    if (callNext) { callNext(); }
   });
-
 };
 
-Post.checkUpdate = function() {
+Post.checkUpdate = function(callNext) {
   $.ajax({
   type: 'HEAD',
   url: "/data/reviews.json",
@@ -47,12 +45,24 @@ Post.checkUpdate = function() {
     var etag = data.getResponseHeader('eTag');
     if (localStorage.reviewEtag !== etag) {
       Post.update();
+      if (callNext) { callNext(); }
     } else {
       Post.loadAll(JSON.parse(localStorage.reviewData));
+      if (callNext) { callNext(); }
     }
   }
   });
 };
+
+Post.ensureAll = function(ctx, next) {
+  console.log('ensure all');
+  if (!Post.all || Post.all.length === 0) {
+    Post.fetchAll(next);
+  } else {
+    if (next) { next(); }
+  }
+};
+
 
 Post.prototype.toPageHTML = function() {
     var template = Handlebars.compile($('#post-page-template').text());
