@@ -162,7 +162,7 @@
 }
 #textDiv {
  position:absolute;
- left:40%;
+ left:45%;
  top:5%;
  width:50%;
  height:90%;
@@ -172,20 +172,20 @@
 }
 #imgDiv {
  position:absolute;
- left:10%;
- top: 5%;
+ left:20%;
+ top: 15%;
  width:20%;
  height:60%;
 }
 #imgDiv img {
- width: 100%;
- height: 100%;
+ width: 90%;
+ height: 90%;
 }
 #ghost-links {
   position: absolute;
-  left: 3%;
-  top: 80%;
-  width: 40%;
+  left: 5%;
+  top: 78%;
+  width: 45%;
   height: 18%;
   border-color: white;
 }
@@ -193,6 +193,7 @@
   display: inline;
   width: 25%;
   height: 100%;
+  margin-right: 3%;
 }
 .ghost-link-div {
   position: relative;
@@ -205,4 +206,15 @@
   top: -450%;
   left: 25%;
   width: 50%;
+}
+#home-link {
+  position: absolute;
+  left: 5%;
+  top: 20%;
+  width: 10%;
+  height: 15%;
+}
+#home-link img {
+  width: 100%;
+  height: 100%;
 }

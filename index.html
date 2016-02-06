@@ -14,15 +14,16 @@
     <div id="imgDiv"><img src='{{imgSrc}}'></div>
     <div id="textDiv">{{{body}}}</div>
     <div id="ghost-links">{{{ghostLinks}}}</div>
+    <div id="home-link"></div>
   </script>
 
   <script id='ghost-link-template' type='text/x-handlebars-template'>
-    <a href="/reviews/{{id}}">
-      <div class="ghost-link-div">
+    <div class="ghost-link-div">
+      <a href="{{url}}">
         <img src='\media\ghost.png'>
-        <div class="ghost-link-text">{{title}}</div>
-      </div>
-    </a>
+        <div class="ghost-link-text">{{{title}}}</div>
+      </a>
+    </div>
   </script>
 
 </head>

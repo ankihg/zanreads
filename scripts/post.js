@@ -5,7 +5,7 @@ var Post = function(tmp) {
   this.id = this.title.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/ /g, '-' ).toLowerCase();
   this.author = tmp.author;
   this.imgSrc = tmp.imgSrc;
-  this.url = tmp.url; // ?
+  this.url = "/reviews/"+this.id;
   this.body = tmp.body;
   console.log(this.title);
 };
@@ -83,7 +83,7 @@ Post.prototype.makeGhostLinks = function() {
     var template = Handlebars.compile($('#ghost-link-template').text());
     var html = template(post);
 
-    this.ghostLinks += html + "&nbsp; &nbsp;";
+    this.ghostLinks += html;
   }
 };
 
