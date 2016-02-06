@@ -12,6 +12,7 @@ var menuTree = {};
 menuTree.makeElements = function() {
   makeBooksLink();
   makeAnkiLink();
+  makeMailLink();
 };
 
 function makeBooksLink() {
@@ -30,6 +31,16 @@ function makeAnkiLink() {
     window.open('http://ankihg.ucoz.com/', '_blank');
   });
   $('#canvasWrap').append(menuTree.$ankiLink);
+};
+
+function makeMailLink() {
+  menuTree.$mailLink = $('<div>').addClass('menu-link').attr('id', 'mail-link');
+  menuTree.$mailLink.css('left', 5.6+'%').css('top', 51.9+'%');
+  menuTree.$mailLink.html('@');
+  menuTree.$mailLink.on('click', function() {
+    window.open('mailto:sylvan.sparling@gmail.com');
+  });
+  $('#canvasWrap').append(menuTree.$mailLink);
 };
 
 
