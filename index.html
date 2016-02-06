@@ -13,6 +13,16 @@
   <script id='post-page-template' type='text/x-handlebars-template'>
     <div id="imgDiv"><img src='{{imgSrc}}'></div>
     <div id="textDiv">{{{body}}}</div>
+    <div id="ghost-links">{{{ghostLinks}}}</div>
+  </script>
+
+  <script id='ghost-link-template' type='text/x-handlebars-template'>
+    <a href="/reviews/{{id}}">
+      <div class="ghost-link-div">
+        <img src='\media\ghost.png'>
+        <div class="ghost-link-text">{{title}}</div>
+      </div>
+    </a>
   </script>
 
 </head>

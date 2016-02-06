@@ -65,11 +65,26 @@ Post.ensureAll = function(ctx, next) {
 
 
 Post.prototype.toPageHTML = function() {
+    this.makeGhostLinks();
+
     var template = Handlebars.compile($('#post-page-template').text());
     var html = template(this);
-    console.log(html);
+
     $('#post-page-wrap').empty();
     $('#post-page-wrap').append(html);
+};
+
+Post.prototype.makeGhostLinks = function() {
+  this.ghostLinks = '';
+
+  for (var i=0; i<3; i++) {
+    var post = Post.all[Math.floor(Post.all.length*Math.random())];
+
+    var template = Handlebars.compile($('#ghost-link-template').text());
+    var html = template(post);
+
+    this.ghostLinks += html + "&nbsp; &nbsp;";
+  }
 };
 
 Post.getByID = function(id) {

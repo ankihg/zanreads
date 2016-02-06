@@ -154,6 +154,8 @@
 #post-page-wrap {
   background-color: black;
   background-image: url('/media/ghosts_colr.png');
+  left: 0%;
+  height: 0%;
   width: 100%;
   height:100%;
   border-style: solid;
@@ -161,22 +163,46 @@
 #textDiv {
  position:absolute;
  left:40%;
- top:0%;
+ top:5%;
  width:50%;
- height:85%;
+ height:90%;
  background-color:#FFFFFF;
- margin: 3%;
  padding:1%;
  overflow-y: scroll;
 }
 #imgDiv {
  position:absolute;
- margin: 3%;
  left:10%;
- width:25%;
- height:70%;
+ top: 5%;
+ width:20%;
+ height:60%;
 }
 #imgDiv img {
- width: 80%;
- height: 80%;
+ width: 100%;
+ height: 100%;
+}
+#ghost-links {
+  position: absolute;
+  left: 3%;
+  top: 80%;
+  width: 40%;
+  height: 18%;
+  border-color: white;
+}
+#ghost-links img {
+  display: inline;
+  width: 25%;
+  height: 100%;
+}
+.ghost-link-div {
+  position: relative;
+  display: inline;
+}
+.ghost-link-text {
+  display: inline;
+  position:absolute;;
+  text-align: center;
+  top: -450%;
+  left: 25%;
+  width: 50%;
 }
