@@ -221,3 +221,14 @@
   width: 100%;
   height: 100%;
 }
+
+/* CATALOG */
+#catalog-wrap {
+  color: white;
+}
+.cat-link {
+  color: white;
+}
+.cat-link:visited {
+  color: gray;
+}

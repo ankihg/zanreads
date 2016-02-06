@@ -26,6 +26,10 @@
     </div>
   </script>
 
+  <script id='catalog-template' type='text/x-handlebars-template'>
+    <a href='{{url}}' class='cat-link'><h4>{{titleUpCs}} - {{author}}</h4></a>
+  </script>
+
 </head>
 <body>
 
@@ -35,6 +39,11 @@
 </div>
 
 <div id="post-page-wrap"></div>
+
+<div id="catalog-wrap">
+<h1><u>Z A N &nbsp; R E A D S &nbsp; . &nbsp; I N F O</u></h1>
+
+</div>
 
 
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
@@ -47,6 +56,7 @@
 <script src="/scripts/post.js"></script>
 <script src="/scripts/postController.js"></script>
 <script src="/scripts/indexController.js"></script>
+<script src="/scripts/catalogController.js"></script>
 <script src="/scripts/flock.js"></script>
 <script src="/scripts/fog.js"></script>
 <script src="/scripts/moon.js"></script>

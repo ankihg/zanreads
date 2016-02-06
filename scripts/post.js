@@ -74,6 +74,13 @@ Post.prototype.toPageHTML = function() {
     $('#post-page-wrap').append(html);
 };
 
+Post.prototype.toCatalogHTML = function() {
+  this.titleUpCs = this.title.toUpperCase();
+  var template = Handlebars.compile($('#catalog-template').text());
+  var html = template(this);
+  $('#catalog-wrap').append(html);
+};
+
 Post.prototype.makeGhostLinks = function() {
   this.ghostLinks = '';
 
