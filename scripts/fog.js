@@ -24,7 +24,14 @@
   };
 
   Fog.generate = function() {
-    Fog.all.push(new Fog());
+    if ($('#canvasWrap').is(':visible')) {
+      Fog.all.push(new Fog());
+    }
+
+    // for (var i=0; i<Push.all.length/8; i++) {
+    //   var fog = Fog.all[Math.floor(Math.random()*Fog.all.length)];
+    //
+    // }
   };
 
   module.Fog = Fog;
