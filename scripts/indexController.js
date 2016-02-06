@@ -1,6 +1,7 @@
 (function(module) {
 
   indexController = {};
+  indexController.isInit = false;
 
   indexController.index = function(ctx, next) {
     ui();
@@ -8,12 +9,15 @@
   };
 
   function init() {
-    console.log('init');
-    menuTree.makeElements();
-    Tree.generate();
-    Flock.setListeners();
-    Fog.init();
-    Moon.init();
+    if (!indexController.isInit) {
+      console.log('init');
+      menuTree.makeElements();
+      Tree.generate();
+      Flock.setListeners();
+      Fog.init();
+      Moon.init();
+      indexController.isInit = true;
+    }
   };
 
   function ui() {
