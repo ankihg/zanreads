@@ -13,6 +13,7 @@ menuTree.makeElements = function() {
   makeBooksLink();
   makeAnkiLink();
   makeMailLink();
+  makeCatalogLink();
 };
 
 function makeBooksLink() {
@@ -41,6 +42,16 @@ function makeMailLink() {
     window.open('mailto:sylvan.sparling@gmail.com');
   });
   $('#canvasWrap').append(menuTree.$mailLink);
+};
+
+function makeCatalogLink() {
+  menuTree.$catLink = $('<div>').addClass('menu-link').attr('id', 'mail-link');
+  menuTree.$catLink.css('left', 13.0+'%').css('top', 57.1+'%');
+  menuTree.$catLink.html('catalog');
+  menuTree.$catLink.on('click', function() {
+    window.location.href = '/catalog';
+  });
+  $('#canvasWrap').append(menuTree.$catLink);
 };
 
 
