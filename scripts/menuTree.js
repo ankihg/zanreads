@@ -45,7 +45,7 @@ function makeMailLink() {
 };
 
 function makeCatalogLink() {
-  menuTree.$catLink = $('<div>').addClass('menu-link').attr('id', 'mail-link');
+  menuTree.$catLink = $('<div>').addClass('menu-link').attr('id', 'catalog-link');
   menuTree.$catLink.css('left', 13.0+'%').css('top', 57.1+'%');
   menuTree.$catLink.html('catalog');
   menuTree.$catLink.on('click', function() {

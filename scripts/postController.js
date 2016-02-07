@@ -9,6 +9,7 @@
     console.log(post);
     post.toPageHTML();
     makeHomeLink();
+    makeCatalogLink();
     setClickTextDivColor();
   };
 
@@ -27,7 +28,18 @@
     var html = template(link);
 
     $('#home-link').append(html);
-  }
+  };
+
+  function makeCatalogLink() {
+    var link = {
+      title: "<br><br>catalog",
+      url: "/catalog"
+    }
+    var template = Handlebars.compile($('#ghost-link-template').text());
+    var html = template(link);
+
+    $('#catalog-p-link').append(html);
+  };
 
 function setClickTextDivColor() {
   $('#textDiv').on('click', function() {
