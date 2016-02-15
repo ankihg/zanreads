@@ -8,10 +8,13 @@
 
     var nFrame = 6;
     var frame = Math.floor(Math.random()*nFrame);
+
+    //LOAD MOONS FROM LOCALSTORAGE
+
     Moon.$img.attr('src', '/media/moon/moon'+frame+'.png');
 
     Moon.$moonDiv.append(Moon.$img);
-  }
+  };
 
   Moon.init = function() {
     Moon.$moonDiv = $('<div>');
