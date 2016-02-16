@@ -14,7 +14,11 @@
 
   <script id='post-page-template' type='text/x-handlebars-template'>
     <div id="imgDiv"><img src='{{imgSrc}}'></div>
-    <div id="textDiv">{{{body}}}</div>
+    <div id="textDiv">
+      <h1 style="text-align:center; line-height:5%;">{{title}}</h1>
+      <h3 style="text-align:center">{{author}}</h3>
+      {{{body}}}
+    </div>
     <div id="ghost-links">{{{ghostLinks}}}</div>
     <div id="home-link"></div>
     <div id="catalog-p-link"></div>

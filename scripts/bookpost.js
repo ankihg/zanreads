@@ -135,7 +135,7 @@ function displayGhostLink(ghostLink, postTitle, postURL, left, imgURL) {
  displayGhostLink(ghostLink, postTitle, postURL, left, imgURL); //here
 };*/
 
-function getRandomPostLink() {
+/*function getRandomPostLink() {
  var postTxt = readTextFile('/books/reviews.txt');
  var posts = postTxt.split('x*****x');
 
@@ -165,9 +165,9 @@ function parsePostLinkData(post) {
  }
  }
  return title.concat(',');
-};
+};*/
 
-function parsePostData() {
+/*function parsePostData() {
  theTitle = title;
 
  var titleRemoved = thePost.split('x**x')[1];
@@ -205,7 +205,7 @@ function parsePostData() {
  }
  }
 
-};
+};*/
 
 function changeColors() {
  var div = document.getElementById('textDiv');
@@ -234,7 +234,7 @@ function changeColors() {
 };
 
 
-function readTextFile(file)
+/*function readTextFile(file)
 {
  var rawFile = new XMLHttpRequest();
  rawFile.open("GET", file, false);
@@ -266,4 +266,4 @@ function writeHTML() {
 window.onload = function() {
 writeHTML();
 setUp();
-};
+};*/
