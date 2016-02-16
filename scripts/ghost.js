@@ -54,7 +54,7 @@ Ghost.prototype.appearGhost = function() {
 };
 
 Ghost.prototype.hideGhost = function() {
-  this.$ghost.hide();
+  this.$ghost.fadeOut(1000);
 
   $('#forestDiv').on('click', function() {
     //do nothing
@@ -72,11 +72,13 @@ Ghost.prototype.toHTML = function() {
 
 
 Ghost.prototype.draw = function() {
+  this.$ghost.hide();
   $('#canvasWrap').append(this.$ghost);
+  this.$ghost.fadeIn(1000);
 }
 
 Ghost.removeGhosts = function() {
-  $('.ghost').remove();
+  $('.ghost').fadeOut(500, 'swing', $('.ghost').remove);
 }
 
 

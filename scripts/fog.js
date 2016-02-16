@@ -7,6 +7,7 @@
   };
 
   Fog.all = [];
+  Fog.max = 500;
 
   Fog.init = function() {
     Fog.$fogDiv = $('<div>');
@@ -25,13 +26,24 @@
 
   Fog.generate = function() {
     if ($('#canvasWrap').is(':visible')) {
-      Fog.all.push(new Fog());
+      if (Fog.all.length < Fog.max) {
+        Fog.all.push(new Fog());
+      } else {
+        Fog.move();
+      }
     }
+  };
 
-    // for (var i=0; i<Push.all.length/8; i++) {
-    //   var fog = Fog.all[Math.floor(Math.random()*Fog.all.length)];
-    //
-    // }
+  Fog.move = function() {
+    var rFog = Fog.all[Math.floor(Math.random()*Fog.all.length)];
+    rFog.updatePos();
+    console.log('moved fog');
+  };
+
+  Fog.prototype.updatePos = function() {
+    this.x = Math.random()*Fog.$fogDiv.width();
+    this.y = Math.random() *Fog.$fogDiv.height();
+    this.$img.css('left', this.x).css('top', this.y);
   };
 
   module.Fog = Fog;
