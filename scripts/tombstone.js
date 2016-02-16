@@ -71,7 +71,7 @@ Tombstone.prototype.create = function() {
 
 Tombstone.prototype.erectTombstone = function() {
   this.$img = $('<img>');
-  this.$img.attr('src', 'http://zanreads.info/tstone2.png');
+  this.$img.attr('src', '/media/tombstone.png');
 
   this.$tombstone.append(this.$img);
 };

@@ -39,7 +39,7 @@ Ghost.prototype.create = function() {
 Ghost.prototype.appearGhost = function() {
   this.$img = $('<img>');
   this.$img.addClass('ghost-img');
-  this.$img.attr('src', 'http://zanreads.info/ghost2.png');
+  this.$img.attr('src', '/media/ghost.png');
 
   this.$ghost.append(this.$img);
 
