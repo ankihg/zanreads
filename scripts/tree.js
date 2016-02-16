@@ -17,7 +17,9 @@ Tree.generate = function() {
   if (!Tree.$forestDiv) {
     Tree.$forestDiv = $('<div>');
     Tree.$forestDiv.attr('id', 'forestDiv')
+    Tree.$forestDiv.hide();
     $('#canvasWrap').append(Tree.$forestDiv);
+    Tree.$forestDiv.fadeIn(2000, 'linear');
   };
 
   if (Tree.trees.length >= Tree.nTrees) {

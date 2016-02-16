@@ -19,11 +19,15 @@
   Moon.init = function() {
     Moon.$moonDiv = $('<div>');
     Moon.$moonDiv.attr('id', 'moonDiv');
+    Moon.$moonDiv.hide();
     $('#canvasWrap').append(Moon.$moonDiv);
+    Moon.$moonDiv.fadeIn(1000, function() {
+      setInterval(Moon.draw,1000);
+    })
 
     Moon.$img = $('<img>');
 
-    setInterval(Moon.draw,1000);
+    Moon.draw();
 
     Moon.$img.on('click', function() {
       Moon.$img.attr('src', '/media/moon/tad.png');

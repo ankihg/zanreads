@@ -54,7 +54,7 @@ Ghost.prototype.appearGhost = function() {
 };
 
 Ghost.prototype.hideGhost = function() {
-  this.$ghost.fadeOut(1000);
+  this.$ghost.fadeOut(500);
 
   $('#forestDiv').on('click', function() {
     //do nothing
