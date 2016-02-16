@@ -23,7 +23,7 @@
 
     Moon.$img = $('<img>');
 
-    setInterval(Moon.draw,600);
+    setInterval(Moon.draw,1000);
 
     Moon.$img.on('click', function() {
       Moon.$img.attr('src', '/media/moon/tad.png');

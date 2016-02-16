@@ -47,7 +47,7 @@ Tree.generate = function() {
 Tree.prototype.draw = function() {
   this.$img = $('<img>');
   this.$img.addClass('tree');
-  this.$img.attr('src', 'http://zanreads.info/tree2.png');
+  this.$img.attr('src', 'media/tree.png');
   this.$img.css('left', this.x).css('top', this.y).css('width', this.width).css('height', this.height);
 
   Tree.$forestDiv.append(this.$img);
