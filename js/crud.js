@@ -122,8 +122,8 @@ var CreateReviewForm = React.createClass({
           <input type="text" value={this.state.author} onChange={this.handleAuthor} /><br/>
           img url:<br/>
           <input type="text" value={this.state.imgSrc} onChange={this.handleImgSrc}/><br/>
-          post:<br/>
-          <input type="text" value={this.state.body} onChange={this.handleBody} /><br/>
+          body:<br/>
+          <textarea rows="5" value={this.state.body} onChange={this.handleBody} /><br/>
           <input type="submit" value="submit" />
         </form>
       </div>
