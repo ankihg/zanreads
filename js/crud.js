@@ -4,7 +4,7 @@ var Crud = React.createClass({
   render: function() {
     return (
       <main>
-        <PostsContainer />
+        <ReviewsContainer />
         <form id='new-post-form' method="post" action="/projects">
           title:<br/>
           <input type="text" name="title" /><br/>
@@ -21,7 +21,7 @@ var Crud = React.createClass({
   }
 });
 
-var PostsContainer = React.createClass({
+var ReviewsContainer = React.createClass({
   render: function() {
     return (
       <div>plz</div>

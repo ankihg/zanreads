@@ -13,15 +13,15 @@ app.use(bodyParser.urlencoded());
 // in latest body-parser use like below.
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/projects', function(req, res) {
+app.get('/reviews', function(req, res) {
   fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
     if (err) return res.status(500).json({msg:'error retrieving reviews', err:err});
     return res.status(200).json({msg:'all reviews', data:JSON.parse(data)});
   })
 });
 
-app.post('/projects', function(req, res) {
-  console.log('post a project');
+app.post('/reviews', function(req, res) {
+  console.log('post a review');
   console.log(`${req.method} request for ${req.url}`);
   // fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
   //   if (err) return res.status(500).send(err);
