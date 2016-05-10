@@ -3,17 +3,7 @@ var Crud = React.createClass({
     return (
       <main>
         <ReviewsList reviews={this.state.data} updateReview={this.updateReview}/>
-        <form id='new-post-form' method="post" action="/projects">
-          title:<br/>
-          <input type="text" name="title" /><br/>
-          author:<br/>
-          <input type="text" name="author" /><br/>
-          img url:<br/>
-          <input type="text" name="imgSrc" /><br/>
-          post:<br/>
-          <input type="text" name="body" /><br/>
-          <input type="submit" value="submit" />
-        </form>
+        <CreateReviewForm createReview={this.createReview}/>
       </main>
     )
   },
@@ -35,6 +25,9 @@ var Crud = React.createClass({
         console.log('error getting reviews', err);
       }
     })
+  },
+  createReview: function(review) {
+    console.log('create ', review);
   },
   updateReview: function(review) {
     $.ajax({
@@ -84,6 +77,52 @@ var Review = React.createClass({
   },
   showUpdateForm: function() {
      console.log('show update form');
+  }
+});
+
+var CreateReviewForm = React.createClass({
+  render: function() {
+    return (
+      <div>
+        create a review
+        <form id='new-post-form' onSubmit={this.handleSubmit}>
+          title:<br/>
+          <input type="text" value={this.state.title} onChange={this.handleTitle}/><br/>
+          author:<br/>
+          <input type="text" value={this.state.author} onChange={this.handleAuthor} /><br/>
+          img url:<br/>
+          <input type="text" value={this.state.imgSrc} onChange={this.handleImgSrc}/><br/>
+          post:<br/>
+          <input type="text" value={this.state.body} onChange={this.handleBody} /><br/>
+          <input type="submit" value="submit" />
+        </form>
+      </div>
+    )
+  },
+  getInitialState: function() {
+    return {title: '', author: '', imgSrc: '', body: ''};
+  },
+  handleSubmit: function(e) {
+    e.preventDefault();
+    var title = this.state.title.trim();
+    var author = this.state.author.trim();
+    var imgSrc = this.state.imgSrc.trim();
+    var body = this.state.body.trim();
+
+    this.props.createReview({title: title, author: author, imgSrc: imgSrc, body: imgSrc});
+    this.setState({title: '', author: '', imgSrc: '', body: ''});
+  },
+  handleTitle: function(e) {
+    this.setState({title: e.target.value});
+  },
+  handleAuthor: function(e) {
+    this.setState({author: e.target.value});
+  },
+  handleImgSrc: function(e) {
+    this.setState({imgSrc: e.target.value});
+  },
+  handleBody: function(e) {
+    this.setState({body: e.target.value});
   }
 });
 

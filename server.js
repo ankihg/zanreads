@@ -24,6 +24,7 @@ app.get('/reviews', function(req, res) {
 app.post('/reviews', function(req, res) {
   console.log('post a review');
   console.log(`${req.method} request for ${req.url}`);
+  console.log(req.body);
   // fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
   //   if (err) return res.status(500).send(err);
   //   var postArr = JSON.parse(data);
