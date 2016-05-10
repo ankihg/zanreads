@@ -2,7 +2,7 @@ var Crud = React.createClass({
   render: function() {
     return (
       <main>
-        <ReviewsList reviews={this.state.data} updateReview={this.updateReview}/>
+        <ReviewsList reviews={this.state.data} updateReview={this.updateReview} deleteReview={this.deleteReview}/>
         <CreateReviewForm createReview={this.createReview}/>
       </main>
     )
@@ -60,15 +60,28 @@ var Crud = React.createClass({
       }
     });
   },
-  deleleteReview: function() {
-
+  deleteReview: function(review) {
+    $.ajax({
+      url: '/reviews/'+review.title.replace(/ /g, '_'),
+      type: 'DELETE',
+      success: function(res) {
+        this.state.data = this.state.data.filter(function(data) {
+          return data.title != review.title;
+        })
+        this.setState({data: this.state.data});
+      }.bind(this),
+      error: function(err) {
+        console.log(err.responseText);
+        console.log('error getting reviews', err);
+      }
+    });
   }
 });
 
 var ReviewsList = React.createClass({
   render: function() {
     var reviewNodes = this.props.reviews.map(function(review) {
-      return <Review review={review} updateReview={this.props.updateReview}/>
+      return <Review review={review} updateReview={this.props.updateReview} deleteReview={this.props.deleteReview}/>
     }.bind(this));
     return (
       <section>
@@ -85,12 +98,15 @@ var Review = React.createClass({
         <img src={this.props.review.imgSrc} style={{width:'10%'}}/>
         {this.props.review.title} <small>by</small> {this.props.review.author}
         <button onClick={this.showUpdateForm}>update</button>
-        <button onClick={''}>delete</button>
+        <button onClick={this.deleteMe}>delete</button>
       </div>
     )
   },
   showUpdateForm: function() {
      console.log('show update form');
+  },
+  deleteMe: function() {
+    this.props.deleteReview(this.props.review);
   }
 });
 
