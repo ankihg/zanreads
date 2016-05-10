@@ -14,6 +14,7 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/reviews', function(req, res) {
+  console.log('get reviews');
   fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
     if (err) return res.status(500).json({msg:'error retrieving reviews', err:err});
     return res.status(200).json({msg:'all reviews', data:JSON.parse(data)});
@@ -34,7 +35,7 @@ app.post('/reviews', function(req, res) {
   // });
 });
 
-app.get('*', function(request, response) {
+app.get('*.html', function(request, response) {
   console.log('New request:', request.url);
   response.sendFile('index.html', { root: '.' });
 });

@@ -1,10 +1,8 @@
-var url = 'http:localhost:3000';
-
 var Crud = React.createClass({
   render: function() {
     return (
       <main>
-        <ReviewsContainer />
+        <ReviewsList reviews={this.state.data}/>
         <form id='new-post-form' method="post" action="/projects">
           title:<br/>
           <input type="text" name="title" /><br/>
@@ -18,19 +16,46 @@ var Crud = React.createClass({
         </form>
       </main>
     )
+  },
+  getInitialState: function() {
+    return {data: []}
+  },
+  componentDidMount:  function() {
+    $.ajax({
+      url: '/reviews',
+      dataType: 'json',
+      success: function(res) {
+        this.setState({data:res.data});
+      }.bind(this),
+      error: function(err) {
+        console.log(err.responseText);
+        console.log('error getting reviews', err);
+      }
+    })
   }
 });
 
-var ReviewsContainer = React.createClass({
+var ReviewsList = React.createClass({
+  render: function() {
+    var reviewNodes = this.props.reviews.map(function(review) {
+      return <Review review={review} />
+    });
+    return (
+      <section>
+        {reviewNodes}
+      </section>
+    )
+  }
+});
+
+var Review = React.createClass({
   render: function() {
     return (
-      <div>plz</div>
-    )},
-    componentDidMount:  function() {
-      $.ajax({
-        url:
-      })
-    }
+      <div>
+        {this.props.review.title}
+      </div>
+    )
+  }
 });
 
 ReactDOM.render(
