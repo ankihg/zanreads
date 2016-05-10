@@ -37,6 +37,17 @@ app.post('/reviews', function(req, res) {
 app.put('/reviews/:title', function(req, res) {
   console.log('update ');
   console.log(req.params.title);
+  var title = req.params.title.replace(/_/g, ' ');
+  fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
+    if (err) return res.status(500).send(err);
+    var reviews = JSON.parse(data);
+    reviews = reviews.map(r => (r.title == title) ?  req.body : r ); // updates all reviews with title
+
+    fs.writeFile(__dirname + '/data/reviews.json', JSON.stringify(reviews, null, 4), (err) => {
+      if (err) return res.status(500).send(err);
+      return res.status(200).json({msg:'updated review', data:req.body});
+    });
+  });
 })
 
 app.delete('/reviews/:title', function(req, res) {
