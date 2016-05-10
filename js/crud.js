@@ -34,8 +34,8 @@ var Crud = React.createClass({
       type: 'POST',
       data: review,
       success: function(res) {
-        console.log(res);
-        // this.setState({data: this.state.data});
+        this.state.data.push(res.data);
+        this.setState({data: this.state.data});
       }.bind(this),
       error: function(err) {
         console.log(err.responseText);
