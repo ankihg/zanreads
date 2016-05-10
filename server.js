@@ -18,17 +18,18 @@ app.get('*', function(request, response) {
   response.sendFile('index.html', { root: '.' });
 });
 
-app.post('*', function(req, res) {
+app.post('/projects', function(req, res) {
+  console.log('post a project');
   console.log(`${req.method} request for ${req.url}`);
-  fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
-    if (err) return res.status(500).send(err);
-    var postArr = JSON.parse(data);
-    postArr.push(req.body);
-    fs.writeFile(__dirname + '/data/reviews.json', JSON.stringify(postArr), (err) => {
-      if (err) return res.status(500).send(err);
-      return res.status(200).redirect('/');
-    });
-  });
+  // fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
+  //   if (err) return res.status(500).send(err);
+  //   var postArr = JSON.parse(data);
+  //   postArr.push(req.body);
+  //   fs.writeFile(__dirname + '/data/reviews.json', JSON.stringify(postArr), (err) => {
+  //     if (err) return res.status(500).send(err);
+  //     return res.status(200).redirect('/');
+  //   });
+  // });
 });
 
 app.listen(port, function() {
