@@ -1,3 +1,5 @@
+var url = 'http:localhost:3000';
+
 var Crud = React.createClass({
   render: function() {
     return (
@@ -23,7 +25,12 @@ var PostsContainer = React.createClass({
   render: function() {
     return (
       <div>plz</div>
-    )}
+    )},
+    componentDidMount:  function() {
+      $.ajax({
+        url:
+      })
+    }
 });
 
 ReactDOM.render(

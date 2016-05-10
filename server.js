@@ -13,9 +13,11 @@ app.use(bodyParser.urlencoded());
 // in latest body-parser use like below.
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('*', function(request, response) {
-  console.log('New request:', request.url);
-  response.sendFile('index.html', { root: '.' });
+app.get('/projects', function(req, res) {
+  fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
+    if (err) return res.status(500).json({msg:'error retrieving reviews', err:err});
+    return res.status(200).json({msg:'all reviews', data:JSON.parse(data)});
+  })
 });
 
 app.post('/projects', function(req, res) {
@@ -30,6 +32,11 @@ app.post('/projects', function(req, res) {
   //     return res.status(200).redirect('/');
   //   });
   // });
+});
+
+app.get('*', function(request, response) {
+  console.log('New request:', request.url);
+  response.sendFile('index.html', { root: '.' });
 });
 
 app.listen(port, function() {
