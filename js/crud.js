@@ -52,7 +52,8 @@ var Review = React.createClass({
   render: function() {
     return (
       <div>
-        {this.props.review.title}
+        <img src={this.props.review.imgSrc} style={{width:'10%'}}/>
+        {this.props.review.title} <small>by</small> {this.props.review.author}
       </div>
     )
   }
