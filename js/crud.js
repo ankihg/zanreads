@@ -27,12 +27,26 @@ var Crud = React.createClass({
     })
   },
   createReview: function(review) {
-    console.log('create ', review);
+    console.log(review);
+    $.ajax({
+      url: '/reviews',
+      dataType: 'json',
+      type: 'POST',
+      data: review,
+      success: function(res) {
+        console.log(res);
+        // this.setState({data: this.state.data});
+      }.bind(this),
+      error: function(err) {
+        console.log(err.responseText);
+        console.log('error getting reviews', err);
+      }
+    });
   },
   updateReview: function(review) {
     $.ajax({
       url: '/reviews/'+review.title.replace(/ /g, '_'),
-      dataType: 'json',
+      contentType: 'application/json',
       type: 'PUT',
       success: function(res) {
         this.state.data = this.state.data.map(function(d) {
@@ -109,7 +123,9 @@ var CreateReviewForm = React.createClass({
     var imgSrc = this.state.imgSrc.trim();
     var body = this.state.body.trim();
 
-    this.props.createReview({title: title, author: author, imgSrc: imgSrc, body: imgSrc});
+    var it = {hajlp: 'plz'};
+    console.log(it.hajlp);
+    this.props.createReview({title: title, author: author, imgSrc: imgSrc, body: body});
     this.setState({title: '', author: '', imgSrc: '', body: ''});
   },
   handleTitle: function(e) {

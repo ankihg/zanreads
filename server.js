@@ -22,18 +22,16 @@ app.get('/reviews', function(req, res) {
 });
 
 app.post('/reviews', function(req, res) {
-  console.log('post a review');
-  console.log(`${req.method} request for ${req.url}`);
-  console.log(req.body);
-  // fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
-  //   if (err) return res.status(500).send(err);
-  //   var postArr = JSON.parse(data);
-  //   postArr.push(req.body);
-  //   fs.writeFile(__dirname + '/data/reviews.json', JSON.stringify(postArr), (err) => {
-  //     if (err) return res.status(500).send(err);
-  //     return res.status(200).redirect('/');
-  //   });
-  // });
+  console.log('post a review', req.body);
+  fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
+    if (err) return res.status(500).send(err);
+    var postArr = JSON.parse(data);
+    postArr.push(req.body);
+    fs.writeFile(__dirname + '/data/reviews.json', JSON.stringify(postArr, null, 4), (err) => {
+      if (err) return res.status(500).send(err);
+      return res.status(200).json({msg:'created review', data:req.body});
+    });
+  });
 });
 
 app.put('reviews/:title', function(req, res) {
