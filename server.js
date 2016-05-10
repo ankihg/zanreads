@@ -35,6 +35,11 @@ app.post('/reviews', function(req, res) {
   // });
 });
 
+app.put('reviews/:title', function(req, res) {
+  console.log('update ');
+  console.log(req.params.title);
+})
+
 app.get('*.html', function(request, response) {
   console.log('New request:', request.url);
   response.sendFile('index.html', { root: '.' });
