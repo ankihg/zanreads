@@ -99,11 +99,19 @@ var Review = React.createClass({
         {this.props.review.title} <small>by</small> {this.props.review.author}
         <button onClick={this.showUpdateForm}>update</button>
         <button onClick={this.deleteMe}>delete</button>
+        <UpdateReviewForm review={this.props.review} isHidden={this.state.hiddenUpdate} hide={this.hideUpdateForm} />
       </div>
     )
   },
+  getInitialState: function() {
+    return {hiddenUpdate: true};
+  },
   showUpdateForm: function() {
      console.log('show update form');
+     this.setState({hiddenUpdate: false});
+  },
+  hideUpdateForm: function() {
+    this.setState({hiddenUpdate: true});
   },
   deleteMe: function() {
     this.props.deleteReview(this.props.review);
@@ -139,8 +147,6 @@ var CreateReviewForm = React.createClass({
     var imgSrc = this.state.imgSrc.trim();
     var body = this.state.body.trim();
 
-    var it = {hajlp: 'plz'};
-    console.log(it.hajlp);
     this.props.createReview({title: title, author: author, imgSrc: imgSrc, body: body});
     this.setState({title: '', author: '', imgSrc: '', body: ''});
   },
@@ -156,6 +162,45 @@ var CreateReviewForm = React.createClass({
   handleBody: function(e) {
     this.setState({body: e.target.value});
   }
+});
+
+var UpdateReviewForm = React.createClass({
+  render: function() {
+    return  (
+      <form className={this.props.isHidden ? 'hidden' : ''} onSubmit={this.handleUpdate}>
+        title:<br/>
+        <input type="text" value={this.state.title} onChange={this.handleTitle}/><br/>
+        author:<br/>
+        <input type="text" value={this.state.author} onChange={this.handleAuthor} /><br/>
+        img url:<br/>
+        <input type="text" value={this.state.imgSrc} onChange={this.handleImgSrc}/><br/>
+        body:<br/>
+        <textarea rows="5" value={this.state.body} onChange={this.handleBody} /><br/>
+        <button onClick={this.cancel}>cancel</button>
+        <input type="submit" value="ok" />
+      </form>
+  )},
+  getInitialState: function() {
+    return {title: this.props.review.title, author: this.props.review.author, imgSrc: this.props.review.imgSrc, body: this.props.review.body}
+  },
+  handleTitle: function(e) {
+    this.setState({title: e.target.value});
+  },
+  handleAuthor: function(e) {
+    this.setState({author: e.target.value});
+  },
+  handleImgSrc: function(e) {
+    this.setState({imgSrc: e.target.value});
+  },
+  handleBody: function(e) {
+    this.setState({body: e.target.value});
+  },
+  cancel: function(e) {
+    e.preventDefault();
+    this.setState({title: this.props.review.title, author: this.props.review.author, imgSrc: this.props.review.imgSrc, body: this.props.review.body});
+    this.props.hide();
+  }
+
 });
 
 ReactDOM.render(
