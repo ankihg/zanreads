@@ -43,14 +43,15 @@ var Crud = React.createClass({
       }
     });
   },
-  updateReview: function(review) {
+  updateReview: function(originalTitle, review) {
     $.ajax({
-      url: '/reviews/'+review.title.replace(/ /g, '_'),
+      url: '/reviews/'+originalTitle.replace(/ /g, '_'),
       contentType: 'application/json',
       type: 'PUT',
+      data: JSON.stringify(review),
       success: function(res) {
         this.state.data = this.state.data.map(function(d) {
-          return (d.title === data.title) ? data : d;
+          return (d.title === originalTitle) ? res.data : d;
         });
         this.setState({data: this.state.data});
       }.bind(this),
@@ -99,7 +100,7 @@ var Review = React.createClass({
         {this.props.review.title} <small>by</small> {this.props.review.author}
         <button onClick={this.showUpdateForm}>update</button>
         <button onClick={this.deleteMe}>delete</button>
-        <UpdateReviewForm review={this.props.review} isHidden={this.state.hiddenUpdate} hide={this.hideUpdateForm} />
+        <UpdateReviewForm review={this.props.review} update={this.props.updateReview} isHidden={this.state.hiddenUpdate} hide={this.hideUpdateForm} />
       </div>
     )
   },
@@ -198,6 +199,16 @@ var UpdateReviewForm = React.createClass({
   cancel: function(e) {
     e.preventDefault();
     this.setState({title: this.props.review.title, author: this.props.review.author, imgSrc: this.props.review.imgSrc, body: this.props.review.body});
+    this.props.hide();
+  },
+  handleUpdate: function(e) {
+    e.preventDefault();
+    var title = this.state.title.trim();
+    var author = this.state.author.trim();
+    var imgSrc = this.state.imgSrc.trim();
+    var body = this.state.body.trim();
+
+    this.props.update(this.props.review.title, {title: title, author: author, imgSrc: imgSrc, body: body});
     this.props.hide();
   }
 

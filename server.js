@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 // in latest body-parser use like below.
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use((req, res, next) => {console.log(req.method + ' request for '+req.url); next(); });
 
 app.get('/reviews', function(req, res) {
   console.log('get reviews');
@@ -37,6 +38,7 @@ app.post('/reviews', function(req, res) {
 app.put('/reviews/:title', function(req, res) {
   console.log('update ');
   console.log(req.params.title);
+  console.log(req.body);
   var title = req.params.title.replace(/_/g, ' ');
   fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
     if (err) return res.status(500).send(err);
