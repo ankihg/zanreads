@@ -73,7 +73,7 @@ app.delete('/reviews/:title', auth, function(req, res) {
   });
 })
 
-app.get('*.html', function(request, response) {
+app.get('*', function(request, response) {
   console.log('New request:', request.url);
   response.sendFile('index.html', { root: '.' });
 });
