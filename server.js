@@ -6,6 +6,12 @@ var requestProxy = require('express-request-proxy'),
 var bodyParser = require('body-parser');
 var fs = require('fs');
 
+function auth(req, res, next) {
+  if (req.headers.authorization === process.env.ZANSECRET) return next();
+  console.log('denied');
+  return res.status(401).json({msg:'unauthorized', data:'plz leave'});
+}
+
 app.use(express.static('./'));
 
 app.use(bodyParser.json());
@@ -22,7 +28,7 @@ app.get('/reviews', function(req, res) {
   })
 });
 
-app.post('/reviews', function(req, res) {
+app.post('/reviews', auth, function(req, res) {
   console.log('post a review', req.body);
   fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
     if (err) return res.status(500).send(err);
@@ -35,7 +41,7 @@ app.post('/reviews', function(req, res) {
   });
 });
 
-app.put('/reviews/:title', function(req, res) {
+app.put('/reviews/:title', auth, function(req, res) {
   console.log('update ');
   console.log(req.params.title);
   console.log(req.body);
@@ -52,7 +58,7 @@ app.put('/reviews/:title', function(req, res) {
   });
 })
 
-app.delete('/reviews/:title', function(req, res) {
+app.delete('/reviews/:title', auth, function(req, res) {
   console.log('delete');
   var title = req.params.title.replace(/_/g, ' ');
   fs.readFile(__dirname + '/data/reviews.json', (err, data) => {

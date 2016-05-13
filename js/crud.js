@@ -35,6 +35,9 @@ var Crud = React.createClass({
       dataType: 'json',
       type: 'POST',
       data: review,
+      headers: {
+        'authorization': this.state.zansecret
+      },
       success: function(res) {
         this.state.data.push(res.data);
         this.setState({data: this.state.data});
@@ -42,6 +45,7 @@ var Crud = React.createClass({
       error: function(err) {
         console.log(err.responseText);
         console.log('error getting reviews', err);
+        window.location = '/';
       }
     });
   },
@@ -51,6 +55,9 @@ var Crud = React.createClass({
       contentType: 'application/json',
       type: 'PUT',
       data: JSON.stringify(review),
+      headers: {
+        'authorization': this.state.zansecret
+      },
       success: function(res) {
         this.state.data = this.state.data.map(function(d) {
           return (d.title === originalTitle) ? res.data : d;
@@ -60,6 +67,7 @@ var Crud = React.createClass({
       error: function(err) {
         console.log(err.responseText);
         console.log('error getting reviews', err);
+        window.location = '/';
       }
     });
   },
@@ -67,6 +75,9 @@ var Crud = React.createClass({
     $.ajax({
       url: '/reviews/'+review.title.replace(/ /g, '_'),
       type: 'DELETE',
+      headers: {
+        'authorization': this.state.zansecret
+      },
       success: function(res) {
         this.state.data = this.state.data.filter(function(data) {
           return data.title != review.title;
@@ -76,6 +87,7 @@ var Crud = React.createClass({
       error: function(err) {
         console.log(err.responseText);
         console.log('error getting reviews', err);
+        window.location = '/';
       }
     });
   },
