@@ -2,13 +2,15 @@ var Crud = React.createClass({
   render: function() {
     return (
       <main>
+        zan secret:
+        <input type="password" value={this.state.zansecret} onChange={this.handleZanSecret}/>
         <ReviewsList reviews={this.state.data} updateReview={this.updateReview} deleteReview={this.deleteReview}/>
         <CreateReviewForm createReview={this.createReview}/>
       </main>
     )
   },
   getInitialState: function() {
-    return {data: []}
+    return {data: [], zansecret: ''}
   },
   componentDidMount:  function() {
     this.getAllReviews();
@@ -76,6 +78,9 @@ var Crud = React.createClass({
         console.log('error getting reviews', err);
       }
     });
+  },
+  handleZanSecret: function(e) {
+    this.setState({zansecret: e.target.value});
   }
 });
 
