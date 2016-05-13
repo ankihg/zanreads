@@ -35,7 +35,7 @@ Tombstone.createAll = function() {
   var yMin = 11*clientHeight/16;
 
   var rowSize = (clientWidth-xMin)/(2*nRow);
-  var colSize = (clientHeight-yMin)/(3*nCol/2);
+  var colSize = (clientHeight-yMin)/(4*nCol/2);
 
   for (var i=0; i<nRow; i++) {
     for (var j=0; j<2*nCol; j=j+2) {
@@ -49,8 +49,8 @@ Tombstone.createAll = function() {
       var y = yMin + i*colSize;
 
       // console.log("y= "+y);
-      var width = (1*rowSize/5)*(y/100);
-      var height = (2*colSize/3)*(y/100);
+      var width = (1*rowSize/6)*(y/100);
+      var height = (4*colSize/5)*(y/100);
 
       Tombstone.all.push(new Tombstone(Post.all[Tombstone.all.length], x, y, width, height));
     }
