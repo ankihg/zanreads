@@ -1,7 +1,9 @@
 var requestProxy = require('express-request-proxy'),
   express = require('express'),
   port = process.env.PORT || 3000,
-  app = express();
+  app = express(),
+  mysql = require('mysql'),
+  connection = mysql.createConnection(process.env.ZAN_JAWSDB_URL);
 
 var bodyParser = require('body-parser');
 var fs = require('fs');
@@ -29,16 +31,35 @@ app.get('/reviews', function(req, res) {
 });
 
 app.post('/reviews', auth, function(req, res) {
-  console.log('post a review', req.body);
-  fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
-    if (err) return res.status(500).send(err);
-    var postArr = JSON.parse(data);
-    postArr.push(req.body);
-    fs.writeFile(__dirname + '/data/reviews.json', JSON.stringify(postArr, null, 4), (err) => {
-      if (err) return res.status(500).send(err);
-      return res.status(200).json({msg:'created review', data:req.body});
+  // console.log('post a review', req.body);
+  // fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
+  //   if (err) return res.status(500).send(err);
+  //   var postArr = JSON.parse(data);
+  //   postArr.push(req.body);
+  //   fs.writeFile(__dirname + '/data/reviews.json', JSON.stringify(postArr, null, 4), (err) => {
+  //     if (err) return res.status(500).send(err);
+  //     return res.status(200).json({msg:'created review', data:req.body});
+  //   });
+  // });
+
+
+  console.log(`INSERT INTO reviews (title, author, imgSrc, body) VALUES (${req.body.title}, ${req.body.author}, ${req.body.imgSrc}, ${req.body.body})`);
+
+  connection.query(
+    `CREATE TABLE IF NOT EXISTS reviews (title VARCHAR(30), author VARCHAR(30), imgSrc VARCHAR(100), body VARCHAR(65535))`,
+    function(err, rows, fields) {
+      if (err) console.log(err);
+
+      connection.query(
+        `INSERT INTO reviews SET ?`, req.body,
+        function(err, rows, fields) {
+          if (err) console.log(err);
+          console.log(rows);
+        }
+      );
+
     });
-  });
+
 });
 
 app.put('/reviews/:title', auth, function(req, res) {
