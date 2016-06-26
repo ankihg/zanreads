@@ -24,10 +24,18 @@ app.use((req, res, next) => {console.log(req.method + ' request for '+req.url); 
 
 app.get('/reviews', function(req, res) {
   console.log('get reviews');
-  fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
-    if (err) return res.status(500).json({msg:'error retrieving reviews', err:err});
-    return res.status(200).json({msg:'all reviews', data:JSON.parse(data)});
-  })
+  // fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
+  //   if (err) return res.status(500).json({msg:'error retrieving reviews', err:err});
+  //   return res.status(200).json({msg:'all reviews', data:JSON.parse(data)});
+  // })
+
+  connection.query(
+    'SELECT * FROM reviews',
+    function(err, rows, fields) {
+      if (err) console.log(err);
+      return res.status(200).json({msg:'all reviews', data:rows});
+    }
+  )
 });
 
 app.post('/reviews', auth, function(req, res) {
@@ -43,10 +51,10 @@ app.post('/reviews', auth, function(req, res) {
   // });
 
 
-  console.log(`INSERT INTO reviews (title, author, imgSrc, body) VALUES (${req.body.title}, ${req.body.author}, ${req.body.imgSrc}, ${req.body.body})`);
+  // console.log(`INSERT INTO reviews (title, author, imgSrc, body) VALUES (${req.body.title}, ${req.body.author}, ${req.body.imgSrc}, ${req.body.body})`);
 
   connection.query(
-    `CREATE TABLE IF NOT EXISTS reviews (title VARCHAR(30), author VARCHAR(30), imgSrc VARCHAR(100), body VARCHAR(65535))`,
+    `CREATE TABLE IF NOT EXISTS reviews (id MEDIUMINT NOT NULL AUTO_INCREMENT, title VARCHAR(30), author VARCHAR(30), imgSrc VARCHAR(100), body VARCHAR(65535), PRIMARY KEY (id))`,
     function(err, rows, fields) {
       if (err) console.log(err);
 
