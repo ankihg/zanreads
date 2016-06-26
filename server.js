@@ -91,25 +91,36 @@ app.put('/reviews/:title', auth, function(req, res) {
     [req.body.title, req.body.author, req.body.imgSrc, req.body.body, req.params.title],
     function(err, rows, fields) {
       if (err) console.log(err);
-      console.log(rows);
+      return res.status(200).json({msg:'updated review'});
     }
   )
-
 })
 
 app.delete('/reviews/:title', auth, function(req, res) {
   console.log('delete');
-  var title = req.params.title.replace(/_/g, ' ');
-  fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
-    if (err) return res.status(500).send(err);
-    var reviews = JSON.parse(data);
-    reviews = reviews.filter(r => r.title != title); // deletes all reviews with title
+  req.params.title = req.params.title.replace(/_/g, ' ');
+  // fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
+  //   if (err) return res.status(500).send(err);
+  //   var reviews = JSON.parse(data);
+  //   reviews = reviews.filter(r => r.title != title); // deletes all reviews with title
+  //
+  //   fs.writeFile(__dirname + '/data/reviews.json', JSON.stringify(reviews, null, 4), (err) => {
+  //     if (err) return res.status(500).send(err);
+  //     return res.status(200).json({msg:'review deleted'});
+  //   });
+  // });
 
-    fs.writeFile(__dirname + '/data/reviews.json', JSON.stringify(reviews, null, 4), (err) => {
-      if (err) return res.status(500).send(err);
-      return res.status(200).json({msg:'review deleted'});
-    });
-  });
+  connection.query(
+    'DELETE FROM reviews WHERE title=?',
+    req.params.title,
+    function(err, rows, fields) {
+      if (err) console.log(err);
+      if (rows.affectedRows < 1) return res.status(400).json({msg:'no reviews deleted', err: new Error('review not found')});
+      if (rows.affectedRows == 1) return res.status(200).json({msg:'review deleted'});
+      if (rows.affectedRows > 1) return res.status(200).json({msg:'multiple reviews deleted'});
+    }
+  )
+
 })
 
 app.get('*', function(request, response) {
