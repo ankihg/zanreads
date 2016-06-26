@@ -62,7 +62,15 @@ app.post('/reviews', auth, function(req, res) {
         `INSERT INTO reviews SET ?`, req.body,
         function(err, rows, fields) {
           if (err) console.log(err);
-          console.log(rows);
+          connection.query(
+            'SELECT * FROM reviews WHERE title=?',
+            req.body.title,
+            function(err, rows, fields) {
+              if (err) console.log(err);
+              return res.status(200).json({msg:'created review', data:rows[0]});
+            }
+          )
+
         }
       );
 
