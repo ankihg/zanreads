@@ -20,39 +20,55 @@ Post.loadAll = function(rawData) {
 
 Post.fetchAll = function(callNext) {
   console.log('fetch all');
-  if (localStorage.reviewData) {
-    console.log('load from storage');
-    Post.checkUpdate(callNext); //checks if needs update, calls loadAll() either way
-  } else {
-      Post.update(callNext);
-  }
+  // if (localStorage.reviewData) {
+  //   console.log('load from storage');
+  //   Post.checkUpdate(callNext); //checks if needs update, calls loadAll() either way
+  // } else {
+  //     Post.update(callNext);
+  // }
+  Post.getAll(callNext);
 };
 
-Post.update = function(callNext) {
- $.getJSON('/data/reviews.json', function(data, message, xhr) {
-    Post.loadAll(data);
-    localStorage.reviewData = JSON.stringify(data);
-    localStorage.reviewEtag = xhr.getResponseHeader('eTag');
-    if (callNext) { callNext(); }
-  });
-};
+Post.getAll = function(callNext) {
+ // $.getJSON('/data/reviews.json', function(data, message, xhr) {
+ //    Post.loadAll(data);
+ //    localStorage.reviewData = JSON.stringify(data);
+ //    localStorage.reviewEtag = xhr.getResponseHeader('eTag');
+ //    if (callNext) { callNext(); }
+ //  });
 
-Post.checkUpdate = function(callNext) {
   $.ajax({
-  type: 'HEAD',
-  url: "/data/reviews.json",
-  complete: function(data) {
-    var etag = data.getResponseHeader('eTag');
-    if (localStorage.reviewEtag !== etag) {
-      Post.update();
+    url: '/reviews',
+    dataType: 'json',
+    success: function(data, message, xhr) {
+      Post.loadAll(data.data);
+      localStorage.reviewData = JSON.stringify(data.data);
+      localStorage.reviewEtag = xhr.getResponseHeader('eTag');
       if (callNext) { callNext(); }
-    } else {
-      Post.loadAll(JSON.parse(localStorage.reviewData));
-      if (callNext) { callNext(); }
+    }.bind(this),
+    error: function(err) {
+      console.log(err.responseText);
+      console.log('error getting reviews', err);
     }
-  }
-  });
+  })
 };
+
+// Post.checkUpdate = function(callNext) {
+//   $.ajax({
+//   type: 'HEAD',
+//   url: "/data/reviews.json",
+//   complete: function(data) {
+//     var etag = data.getResponseHeader('eTag');
+//     if (localStorage.reviewEtag !== etag) {
+//       Post.update();
+//       if (callNext) { callNext(); }
+//     } else {
+//       Post.loadAll(JSON.parse(localStorage.reviewData));
+//       if (callNext) { callNext(); }
+//     }
+//   }
+//   });
+// };
 
 Post.ensureAll = function(ctx, next) {
   console.log('ensure all');
