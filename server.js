@@ -3,7 +3,7 @@ var requestProxy = require('express-request-proxy'),
   port = process.env.PORT || 3000,
   app = express(),
   mysql = require('mysql'),
-  connection = mysql.createConnection(process.env.ZAN_JAWSDB_URL);
+  connection = mysql.createConnection(process.env.ZAN_JAWSDB_URL || process.env.JAWSDB_URL);
 
 var bodyParser = require('body-parser');
 var fs = require('fs');
