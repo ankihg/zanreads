@@ -62,6 +62,7 @@ app.post('/reviews', auth, function(req, res) {
         `INSERT INTO reviews SET ?`, req.body,
         function(err, rows, fields) {
           if (err) console.log(err);
+
           connection.query(
             'SELECT * FROM reviews WHERE title=?',
             req.body.title,
@@ -99,7 +100,16 @@ app.put('/reviews/:title', auth, function(req, res) {
     [req.body.title, req.body.author, req.body.imgSrc, req.body.body, req.params.title],
     function(err, rows, fields) {
       if (err) console.log(err);
-      return res.status(200).json({msg:'updated review'});
+
+      connection.query(
+        'SELECT * FROM reviews WHERE title=?',
+        req.body.title,
+        function(err, rows, fields) {
+          if (err) console.log(err);
+          return res.status(200).json({msg:'review updated', data:rows[0]});
+        }
+      )
+
     }
   )
 })
