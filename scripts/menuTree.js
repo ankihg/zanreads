@@ -29,7 +29,7 @@ function makeAnkiLink() {
   menuTree.$ankiLink.css('left', 9.5+'%').css('top', 7.4+'%');
   menuTree.$ankiLink.html('&');
   menuTree.$ankiLink.on('click', function() {
-    window.open('http://ankihg.ucoz.com/', '_blank');
+    window.open('http://ankihg.herokuapp.com/#/home', '_blank');
   });
   $('#canvasWrap').append(menuTree.$ankiLink);
 };
