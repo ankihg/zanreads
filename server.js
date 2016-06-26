@@ -74,17 +74,27 @@ app.put('/reviews/:title', auth, function(req, res) {
   console.log('update ');
   console.log(req.params.title);
   console.log(req.body);
-  var title = req.params.title.replace(/_/g, ' ');
-  fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
-    if (err) return res.status(500).send(err);
-    var reviews = JSON.parse(data);
-    reviews = reviews.map(r => (r.title == title) ?  req.body : r ); // updates all reviews with title
+  req.params.title = req.params.title.replace(/_/g, ' ');
+  // fs.readFile(__dirname + '/data/reviews.json', (err, data) => {
+  //   if (err) return res.status(500).send(err);
+  //   var reviews = JSON.parse(data);
+  //   reviews = reviews.map(r => (r.title == title) ?  req.body : r ); // updates all reviews with title
+  //
+  //   fs.writeFile(__dirname + '/data/reviews.json', JSON.stringify(reviews, null, 4), (err) => {
+  //     if (err) return res.status(500).send(err);
+  //     return res.status(200).json({msg:'updated review', data:req.body});
+  //   });
+  // });
 
-    fs.writeFile(__dirname + '/data/reviews.json', JSON.stringify(reviews, null, 4), (err) => {
-      if (err) return res.status(500).send(err);
-      return res.status(200).json({msg:'updated review', data:req.body});
-    });
-  });
+  connection.query(
+    'UPDATE reviews SET title=?, author=?, imgSrc=?, body=? WHERE title=?',
+    [req.body.title, req.body.author, req.body.imgSrc, req.body.body, req.params.title],
+    function(err, rows, fields) {
+      if (err) console.log(err);
+      console.log(rows);
+    }
+  )
+
 })
 
 app.delete('/reviews/:title', auth, function(req, res) {
