@@ -28,13 +28,13 @@ Tombstone.createAll = function() {
   var clientWidth = $('#canvasWrap').width();
   var clientHeight = $('#canvasWrap').height();
 
-  var nRow = 3;
+  var nRow = 4;
   var nCol = 3;
 
   var xMin = clientWidth/4;
   var yMin = 11*clientHeight/16;
 
-  var rowSize = (clientWidth-xMin)/(2*nRow);
+  var rowSize = (clientWidth-xMin)/(1.5*nRow);
   var colSize = (clientHeight-yMin)/(4*nCol/2);
 
   for (var i=0; i<nRow; i++) {
@@ -88,11 +88,11 @@ Tombstone.prototype.engraveText = function() {
 
 Tombstone.prototype.handleGhostRise = function() {
   var tombstone = this;
-  this.$img.on('mouseover', function() {
+  this.$img.on('click', function() {
     Ghost.raiseGhost(tombstone.post, tombstone.x);
   });
 
-  this.$engraving.on('mouseover', function() {
+  this.$engraving.on('click', function() {
     Ghost.raiseGhost(tombstone.post, tombstone.x);
   });
 
